@@ -1,6 +1,16 @@
 /*rock paper scissors game*/
 
-const pl = "Rock";
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const left = document.querySelector(".left");
+const right = document.querySelector(".right");
+let div = document.querySelector("#ris");
+let para = document.createElement("p"); 
+
+rock.addEventListener('click', function(){ playRound("rock")});
+paper.addEventListener('click', function(){playRound("paper")});
+scissors.addEventListener('click', function(){playRound("scissors")});
 
 function computerPlay (){
     let n = Math.floor(Math.random()*3);
@@ -14,50 +24,68 @@ function computerPlay (){
     }
 }
 
-function playRound(player,cpu){
+console.log(computerPlay());
+
+function playRound(player){
+    
     let p = player;
-    let c = cpu;
-
+    let c = computerPlay();
+    console.log(p);
+    console.log(c);
     if(p=="rock" && c=="Paper"){
-        return "You lose! Paper beats rock.";
+        para.textContent = "You lose! Paper beats rock.";
+        left.style.backgroundColor = "red";
+        right.style.backgroundColor = "green";
+        
     }else if(p=="rock" && c=="Scissors"){
-        return "You win! Rock beats scissors.";
+        para.textContent = "You win! Rock beats scissors.";
+        left.style.backgroundColor = "green";
+        right.style.backgroundColor = "red";
     }else if(p=="paper" && c=="Scissors"){
-        return "You lose! Scissors beat paper.";
+        para.textContent = "You lose! Scissors beat paper.";
+        left.style.backgroundColor = "red";
+        right.style.backgroundColor = "green";
     }else if(p=="paper" && c=="Rock"){
-        return "You win! Paper beats rock.";
+        para.textContent = "You win! Paper beats rock.";
+        left.style.backgroundColor = "green";
+        right.style.backgroundColor = "red";
     }else if(p=="scissors" && c=="Rock"){
-        return "You lose! Rock beats scissors.";
+        para.textContent = "You lose! Rock beats scissors.";
+        left.style.backgroundColor = "red";
+        right.style.backgroundColor = "green";
     }else if(p=="scissors" && c=="Paper"){
-        return "You win! Scissors beat paper.";
+        para.textContent = "You win! Scissors beat paper.";
+        left.style.backgroundColor = "green";
+        right.style.backgroundColor = "red";
     }else{
-        return "Draw!"
+        para.textContent = "Draw!"
+        left.style.backgroundColor = "lightblue";
+        right.style.backgroundColor = "lightblue";
     }
-}
 
-function game(){
-    let cpuScore = 0;
-    let playerScore = 0;
+    div.appendChild(para);
+
+// function game(){
+//     let cpuScore = 0;
+//     let playerScore = 0;
     
 
-    for(let i = 0; i < 5; i++){
-        let playerPlay = prompt("What is your pick? (Rock, Paper, Scissors)");
-        let round = playRound(playerPlay.toLowerCase(),computerPlay());
-        if(round.charAt(4) == "w"){
-            playerScore++;
-        }else if(round.charAt(4) == "l"){
-            cpuScore++;
-        }
-    }
+//     for(let i = 0; i < 5; i++){
+//         let playerPlay = prompt("What is your pick? (Rock, Paper, Scissors)");
+//         let round = playRound(playerPlay.toLowerCase(),computerPlay());
+//         if(round.charAt(4) == "w"){
+//             playerScore++;
+//         }else if(round.charAt(4) == "l"){
+//             cpuScore++;
+//         }
+//     }
 
-    if(playerScore>cpuScore){
-        return 'Congrats! You won. Your score: '+playerScore+', your opponent\'s: '+cpuScore+'.';
-    }else if(playerScore<cpuScore){
-        return 'You lost. Your score: '+playerScore+', your opponent\'s: '+cpuScore+'.';
-    }else{
-        return 'Draw';
-    }
+//     if(playerScore>cpuScore){
+//         return 'Congrats! You won. Your score: '+playerScore+', your opponent\'s: '+cpuScore+'.';
+//     }else if(playerScore<cpuScore){
+//         return 'You lost. Your score: '+playerScore+', your opponent\'s: '+cpuScore+'.';
+//     }else{
+//         return 'Draw';
+//     }
 
 }
-
-console.log(game());
